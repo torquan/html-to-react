@@ -569,4 +569,15 @@ describe('Html2React', () => {
       assert.equal(htmlInput, output);
     });
   });
+
+  describe('script', () => {
+    it('should not escape double quotes in script elements', () => {
+      const htmlInput = '<script type="text/javascript">var x = "something";</script>';
+
+      const reactComponent = parser.parse(htmlInput);
+      const reactHtml = ReactDOMServer.renderToStaticMarkup(reactComponent);
+
+      assert.equal(htmlInput, reactHtml);
+    });
+  });
 });
